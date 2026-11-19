@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="https://trulytoursnamibia.com/sitemap-stylesheet.xsl"?>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <sitemap>
+    <loc>https://trulytoursnamibia.com/post-type-elementor_library-sitemap-1.xml</loc>
+    <lastmod>2026-11-11T00:47:18+00:00</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://trulytoursnamibia.com/post-type-page-sitemap-1.xml</loc>
+    <lastmod>2026-11-11T14:24:38+00:00</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://trulytoursnamibia.com/post-type-post-sitemap-1.xml</loc>
+    <lastmod>2026-11-11T00:47:39+00:00</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://trulytoursnamibia.com/taxonomy-type-category-sitemap-1.xml</loc>
+    <lastmod>2026-11-11T14:24:39+00:00</lastmod>
+  </sitemap>
+</sitemapindex>
