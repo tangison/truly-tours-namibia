@@ -175,10 +175,10 @@
   }
 }
 
-/* gallery: the wall, line to line, gap 2 (photos.md page CSS) */
+/* gallery: the wall, line to line, gap 2 (photos.md page CSS); 12 cells = 6x2 desktop */
 .wall {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 2px;
 }
 .wall__cell {
@@ -195,7 +195,7 @@
 }
 @media (max-width: 1023px) {
   .wall {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 }
 @media (max-width: 639px) {

@@ -180,4 +180,21 @@ export const GALLERY = [
   { img: "/images/etosha.webp", alt: "Waterhole in Etosha National Park with game" },
   { img: "/images/city.webp", alt: "Windhoek's city skyline between hills" },
   { img: "/images/bushnan-nam.webp", alt: "Kalahari landscape with camelthorn trees" },
+  {
+    img: "/images/whatsapp-image-2025-08-26-at-19.53.36.webp",
+    alt: "Guests on a Truly Tours game drive",
+  },
+  {
+    img: "/images/whatsapp-image-2025-08-26-at-19.52.44.webp",
+    alt: "Guests on a Truly Tours trip in Namibia",
+  },
 ];
+
+/* Destination photographs sourced from free-licence libraries (Pexels, Unsplash,
+   Britannica) for tour stops the client has not yet photographed. One credits
+   line in the footer names them (taste-skill: credits for non-client photos). */
+export const SOURCED = {
+  canyon: "/images/fish-river-canyon.webp",
+  kolmanskop: "/images/kolmanskop.webp",
+  aerial: "/images/dunes-aerial.webp",
+};

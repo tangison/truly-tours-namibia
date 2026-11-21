@@ -4,6 +4,7 @@ import {
   TESTIMONIALS,
   CONTACT,
   GALLERY,
+  SOURCED,
 } from "@/lib/site";
 import { TourChapters, DevelopingPhoto, KitScripts } from "@/components/moments";
 
@@ -15,20 +16,21 @@ import { TourChapters, DevelopingPhoto, KitScripts } from "@/components/moments"
    moments: pinned-chapters (the grand southern loop, its own 2-screen section) + picture-develops (Etosha)
    1 hero (film) 2 tours rows (services-list) 3 chapters (pinned moment, 2 screens) 4 activities (rows
    + photo pair) 5 gallery wall 6 develops + testimonials (surface band) 7 about/CSR (split) footer.closing
-   Every photograph is the client's own, from trulytoursnamibia.com. */
+   Photographs are the client's own (trulytoursnamibia.com); the three destination shots the client has
+   not yet photographed (canyon, Kolmanskop, aerial dunes) are free-licence stand-ins, credited in the footer. */
 
 const CHAPTERS = [
   {
     title: "Days 1–3: the Kalahari and the canyon",
     text: "South from Windhoek into red Kalahari dunes, then the rim of the Fish River Canyon, the second largest canyon on earth, at sunset.",
-    img: "/images/bushnan-nam.webp",
-    alt: "Kalahari landscape with camelthorn trees",
+    img: SOURCED.canyon,
+    alt: "Fish River Canyon winding through rock at sunset",
   },
   {
     title: "Days 4–6: Lüderitz and the dunes",
     text: "The colonial harbour town of Lüderitz, the ghost town of Kolmanskop filling with sand, then north to the great dunes of Sossusvlei.",
-    img: "/images/sossusvlei.webp",
-    alt: "Dead trees in the white clay pan of Sossusvlei",
+    img: SOURCED.kolmanskop,
+    alt: "Sand dune pouring through a doorway in the Kolmanskop ghost town",
   },
   {
     title: "Days 7–9: the coast and Brandberg",
@@ -187,10 +189,10 @@ export default function Home() {
               </ul>
               <div className="span-5 start-8">
                 <div className="tours-photo">
-                  { }
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src="/images/desert.webp"
-                    alt="Red dunes of the Namib desert under a blue sky"
+                    src={SOURCED.aerial}
+                    alt="Aerial view over the red dunes of Sossusvlei"
                     loading="lazy"
                   />
                 </div>
@@ -454,6 +456,10 @@ export default function Home() {
             </div>
             <div className="footer__legal">
               <span>&copy; 2026 Truly Tours Namibia</span>
+              <span className="muted">
+                Destination photographs: Pexels, Britannica. All other
+                photographs by Truly Tours Namibia.
+              </span>
               <div className="socials" />
             </div>
           </div>
