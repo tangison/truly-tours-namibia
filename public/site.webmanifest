@@ -1,0 +1,12 @@
+{
+  "name": "Truly Tours Namibia",
+  "short_name": "Truly Tours",
+  "icons": [
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" },
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ],
+  "theme_color": "#f4efe8",
+  "background_color": "#f4efe8",
+  "start_url": "/",
+  "display": "browser"
+}

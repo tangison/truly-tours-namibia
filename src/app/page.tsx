@@ -122,6 +122,8 @@ export default function Home() {
                 <img
                   src="/images/sossusvlei.webp"
                   alt="Camelthorn trees in the white clay pan of Sossusvlei under red dunes"
+                  width={1600}
+                  height={900}
                   style={{
                     ["--ly-pos" as string]: "50% 62%",
                     ["--ly-pos-phone" as string]: "56% 50%",
@@ -328,16 +330,16 @@ export default function Home() {
               <p>
                 Our team is made up of knowledgeable members with years of
                 hands-on experience in Namibia&apos;s tourism industry. Each
-                team member has not only explored the country extensively
-                through guiding and travel planning, but also holds academic
-                qualifications in tourism and related fields.
+                team member has explored the country extensively through
+                guiding and travel planning, and holds academic qualifications
+                in tourism and related fields.
               </p>
               <p>
-                We believe that tourism should uplift and empower local
-                communities. Our corporate social responsibility work supports
-                rural communities in high-risk human-wildlife conflict areas,
-                particularly small-scale farmers whose crops and livestock sit
-                beside wildlife corridors.
+                We believe that tourism should uplift local communities. Our
+                corporate social responsibility work supports rural communities
+                in high-risk human-wildlife conflict areas, particularly
+                small-scale farmers whose crops and livestock sit beside
+                wildlife corridors.
               </p>
               <p>
                 <a className="link" href="#contact">
@@ -459,6 +461,16 @@ export default function Home() {
               <span className="muted">
                 Destination photographs: Pexels, Britannica. All other
                 photographs by Truly Tours Namibia.
+              </span>
+              <span>
+                Made by{" "}
+                <a
+                  href="https://studio.tangison.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Tangison Studio
+                </a>
               </span>
               <div className="socials" />
             </div>

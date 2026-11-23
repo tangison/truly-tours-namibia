@@ -66,6 +66,26 @@
   height: 34px;
   width: auto;
 }
+
+/* the brand bar (Tangison webmaster checklist): a 4px accent bar on the extreme
+   top edge of the viewport, color sampled from the client's logo artwork
+   (#c05a15). position:fixed = zero layout shift (CLS 0), persistent on every
+   breakpoint, no pointer interference. */
+.brand-bar {
+  position: fixed;
+  inset: 0 0 auto 0;
+  height: 4px;
+  z-index: 60;
+  background: #c05a15;
+  pointer-events: none;
+}
+
+/* visible keyboard focus (WCAG 2.4.7) on every interactive element */
+:focus-visible {
+  outline: 3px solid #c05a15;
+  outline-offset: 2px;
+  border-radius: 2px;
+}
 .footer-logo {
   display: block;
   height: 40px;

@@ -31,7 +31,7 @@ export const TOURS: Tour[] = [
     short: "The classic Namibia loop",
     img: "/images/windhoek-city.webp",
     intro:
-      "This 10 days tour takes you to some of Namibia's iconic and unforgettable destinations. You will experience breathtaking landscapes, wildlife, and cultures that make Namibia truly unique.",
+      "Ten days on the classic Namibia loop: the dunes at Sossusvlei, the Atlantic in Swakopmund and three days of game drives in Etosha. The route links the country's best-known landscapes with the wildlife that lives in them.",
     itinerary:
       "Day 1: Windhoek. Day 2: Sossusvlei. Day 3: Sossusvlei. Day 4: Swakopmund. Day 5: Swakopmund, Spitzkoppe. Day 6: Twyfelfontein. Day 7: Etosha National Park. Day 8: Etosha National Park. Day 9: Etosha National Park. Day 10: Windhoek.",
     included:
@@ -44,7 +44,7 @@ export const TOURS: Tour[] = [
     short: "Damaraland and rock art",
     img: "/images/sossusvlei.webp",
     intro:
-      "This tour takes you to the beautiful destinations of Sossusvlei, Swakopmund and Etosha National Park, with the Brandberg Mountain and the rock engravings of Twyfelfontein on the way north.",
+      "This tour takes in Sossusvlei and Swakopmund, then heads north past the Brandberg Mountain and the rock engravings of Twyfelfontein to the plains of Etosha National Park.",
     itinerary:
       "Day 1: Windhoek. Day 2: Sossusvlei. Day 3: Sossusvlei. Day 4: Swakopmund. Day 5: Brandberg Mountain. Day 6: Twyfelfontein. Day 7: Etosha National Park. Day 8: Etosha National Park. Day 9: Etosha National Park. Day 10: Windhoek.",
     included:
@@ -58,7 +58,7 @@ export const TOURS: Tour[] = [
     short: "The grand southern loop",
     img: "/images/kalahari.webp",
     intro:
-      "This tour offers an unforgettable journey through the southern landscapes of Namibia, rich in natural wonders and cultural heritage.",
+      "Thirteen days covering the whole south of Namibia: red Kalahari dunes, the rim of the Fish River Canyon, the ghost town of Kolmanskop, the great dunes of Sossusvlei and the waterholes of Etosha.",
     itinerary:
       "Day 1: Windhoek. Day 2: Kalahari. Day 3: Fish River Canyon. Day 4: Fish River Canyon. Day 5: Lüderitz. Day 6: Sossusvlei. Day 7: Sossusvlei. Day 8: Swakopmund. Day 9: Swakopmund. Day 10: Brandberg Mountain. Day 11: Etosha National Park. Day 12: Etosha National Park. Day 13: Windhoek.",
     included:
@@ -118,7 +118,7 @@ export const ACTIVITIES: Activity[] = [
     id: "bushmen-walk",
     hours: "3 hours",
     title: "The Bushmen Walk: step into ancient wisdom",
-    text: "A cultural journey to the Bushmen Survival Trust, 22 km from Windhoek, where the last first-people of Southern Africa share their surviving skills, culture and rich heritage.",
+    text: "A cultural visit to the Bushmen Survival Trust, 22 km from Windhoek, where the last first-people of Southern Africa share their surviving skills, culture and rich heritage.",
     price: "",
     img: "/images/bushman.webp",
   },
