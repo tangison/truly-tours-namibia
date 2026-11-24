@@ -1,55 +1,23 @@
-import {
-  TOURS,
-  ACTIVITIES,
-  TESTIMONIALS,
-  CONTACT,
-  GALLERY,
-  SOURCED,
-} from "@/lib/site";
-import { TourChapters, DevelopingPhoto, KitScripts } from "@/components/moments";
+import { TOURS, ACTIVITIES, TESTIMONIALS, CONTACT, GALLERY } from "@/lib/site";
+import TSlider from "@/components/tslider";
 
-/* The plan (taste-skill step 3), screens at 1440x900:
-   kind: service (tour operator, site-kind other)
-   deal: brand tokens from the client's logo (warm paper ground #f4efe8, brown ink, safari orange),
-     pairing Schibsted Grotesk, hero film (poster = Sossusvlei, the words in a solid box on its dark foot),
-     nav-split, footer-columns, close-photo, rhythm surface-pairs, buttons block, mark arc
-   moments: pinned-chapters (the grand southern loop, its own 2-screen section) + picture-develops (Etosha)
-   1 hero (film) 2 tours rows (services-list) 3 chapters (pinned moment, 2 screens) 4 activities (rows
-   + photo pair) 5 gallery wall 6 develops + testimonials (surface band) 7 about/CSR (split) footer.closing
-   Photographs are the client's own (trulytoursnamibia.com); the three destination shots the client has
-   not yet photographed (canyon, Kolmanskop, aerial dunes) are free-licence stand-ins, credited in the footer. */
+/* The plan (scroll-craft): grammar = gallery/catalog. The visitor's question is
+   "what are the options", so the page is a walkable collection: a layered hero
+   that already shows object one with its museum label, a quiet route chapter,
+   a sideways pan through all six tours (the peak), day-by-day routes under
+   accordions, experiences under accordions, guest words in a slider, a photo
+   wall, and a contact plate that resolves and holds. Grounds change per
+   section on hard edges; no drift, no pins, no scrub clips (the 500KB budget
+   holds, and the grammar bans argument-pin acts anyway).
+   Signature move: the route rail (route-rail.tsx), a fixed line through the
+   country that draws with scroll and stamps a waypoint per section. */
 
-const CHAPTERS = [
-  {
-    title: "Days 1–3: the Kalahari and the canyon",
-    text: "South from Windhoek into red Kalahari dunes, then the rim of the Fish River Canyon, the second largest canyon on earth, at sunset.",
-    img: SOURCED.canyon,
-    alt: "Fish River Canyon winding through rock at sunset",
-  },
-  {
-    title: "Days 4–6: Lüderitz and the dunes",
-    text: "The colonial harbour town of Lüderitz, the ghost town of Kolmanskop filling with sand, then north to the great dunes of Sossusvlei.",
-    img: SOURCED.kolmanskop,
-    alt: "Sand dune pouring through a doorway in the Kolmanskop ghost town",
-  },
-  {
-    title: "Days 7–9: the coast and Brandberg",
-    text: "Swakopmund's German architecture on the Atlantic, a marine cruise, then Namibia's highest mountain, the Brandberg, with its rock art.",
-    img: "/images/swakopmund.webp",
-    alt: "Swakopmund on the Atlantic coast",
-  },
-  {
-    title: "Days 10–13: Etosha and home",
-    text: "Three days of game drives around Etosha's waterholes, elephants, rhino and lions, then the long road south back to Windhoek.",
-    img: "/images/etosha.webp",
-    alt: "A waterhole in Etosha National Park",
-  },
-];
+const WA = "https://wa.me/264814642798";
 
 export default function Home() {
   return (
     <>
-      {/* NAV (nav-split): the name in the middle, four words left, the main action right */}
+      {/* NAV (the index): four words that jump, the wordmark, one action label */}
       <header className="nav nav--split">
         <div className="wrap nav__bar">
           <a className="skip-link" href="#top">
@@ -62,32 +30,32 @@ export default function Home() {
               </a>
             </div>
             <div className="nav__item">
-              <a className="nav__link" href="#activities">
-                Activities
+              <a className="nav__link" href="#routes">
+                Routes
               </a>
             </div>
             <div className="nav__item">
-              <a className="nav__link" href="#gallery">
-                Gallery
+              <a className="nav__link" href="#experiences">
+                Experiences
               </a>
             </div>
             <div className="nav__item">
-              <a className="nav__link" href="#about">
-                About
+              <a className="nav__link" href="#words">
+                Guests
               </a>
             </div>
           </nav>
-          <a className="nav__logo" href="#top">
-            { }
+          <a className="nav__logo" href="#top" aria-label="Truly Tours Namibia, back to top">
             <img
               src="/images/asset-2.webp"
               alt="Truly Tours Namibia"
               height={34}
+              width={88}
             />
           </a>
           <div className="nav__actions">
-            <a className="btn btn--primary" href="#contact">
-              Book a tour
+            <a className="btn btn--primary" href={WA} target="_blank" rel="noopener noreferrer">
+              WhatsApp us
             </a>
           </div>
           <button
@@ -109,377 +77,340 @@ export default function Home() {
       </header>
 
       <main id="top">
-        {/* HERO (film): Sossusvlei poster in a cinema frame, the words in a solid box on its dark foot */}
+        {/* 1 · ARRIVAL: the collection starts at the top. Layered planes: dune
+           bed behind, the first tour as a framed object, its label plate
+           overlapping, the words at 1x on top. */}
+        <section className="hero-sc" data-sc-act="flow" aria-labelledby="hero-h">
+          <div className="hero-sc__bed" data-sc-parallax="-1.1" aria-hidden="true">
+            <img
+              src="/images/hero-bed.webp"
+              alt=""
+              width={1600}
+              height={900}
+              fetchPriority="high"
+            />
+          </div>
+          <div className="hero-sc__atmo" aria-hidden="true" />
+          <figure
+            className="hero-sc__object"
+            data-sc-parallax="-0.3"
+            data-sc-reveal="iris"
+            data-sc-reveal-at="0.05 0.45"
+          >
+            <img
+              src="/images/sossusvlei.webp"
+              alt="Camelthorn trees in the white clay pan of Sossusvlei under red dunes"
+              width={1440}
+              height={810}
+              fetchPriority="high"
+            />
+          </figure>
+          <div className="hero-sc__label tt-plate" data-sc-parallax="0.32" data-sc-in>
+            <p className="tt-labelrow">Days 3 · Dunes to the coast</p>
+            <h2 className="sc-display sc-display--md">Sossusvlei and Swakopmund</h2>
+            <p className="tt-tourcard__route">Windhoek, Sossusvlei, Swakopmund, Windhoek</p>
+            <p className="tt-tourcard__inc">
+              Park fees and transport included. Accommodation and most meals too.
+            </p>
+            <a className="link" href="#routes">
+              The full route
+            </a>
+          </div>
+          <div className="hero-sc__type" data-sc-in data-sc-stagger="70">
+            <p className="tt-labelrow">Small groups · Local guides</p>
+            <h1 id="hero-h" className="sc-display sc-display--xl">
+              Guided Namibia tours from Windhoek
+            </h1>
+            <p className="sc-lede">
+              Three to thirteen days with a local guide. Park fees, transport
+              and accommodation are in the price; most meals too. Every quote is
+              confirmed in writing before anything is paid.
+            </p>
+            <div className="tt-cta-row">
+              <a className="tt-btn" href={WA} target="_blank" rel="noopener noreferrer">
+                WhatsApp us
+              </a>
+              <a className="tt-btn tt-btn--ghost" href="#tours">
+                Walk the tours
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* 2 · ORIENTATION: the quiet chapter. The route line draws along the
+           bottom edge; this act holds its name and almost nothing else moves. */}
+        <section className="sc-section tt-band" data-sc-act="flow" aria-labelledby="route-h">
+          <div className="sc-wrap" data-sc-in>
+            <h2 id="route-h" className="sc-display sc-display--lg">
+              One country, six routes
+            </h2>
+            <p className="sc-body">
+              Every tour leaves Windhoek and returns to it. The line along the
+              bottom of the page is the road: it draws while you scroll, and
+              each waypoint jumps to its section.
+            </p>
+          </div>
+        </section>
+
+        {/* 3 · RANGE (the peak): the whole set travels sideways, one museum
+           label per tour, the lead and the note as first and last cards. */}
         <section
-          className="hero hero--film"
-          data-enter
-          aria-labelledby="hero-h"
+          className="tt-pan-sec"
+          id="tours"
+          data-sc-act="pan"
+          data-sc-span="4.2"
+          aria-labelledby="tours-h"
         >
-          <div className="wrap">
-            <div className="hero-text hero__in">
-              <div className="hero__media hero__fill">
-                { }
-                <img
-                  src="/images/sossusvlei.webp"
-                  alt="Camelthorn trees in the white clay pan of Sossusvlei under red dunes"
-                  width={1600}
-                  height={900}
-                  style={{
-                    ["--ly-pos" as string]: "50% 62%",
-                    ["--ly-pos-phone" as string]: "56% 50%",
-                  }}
-                  fetchPriority="high"
-                />
-                <div className="hero__over">
-                  <div>
-                    <h1 id="hero-h">
-                      Guided Namibia tours from Windhoek
-                    </h1>
-                    <p className="hero__lead">
-                      Three to thirteen days to Sossusvlei, Etosha, the coast
-                      and the Kalahari, with a local guide, park fees and
-                      accommodation included.
-                    </p>
-                    <div className="btn-row">
-                      <a className="btn btn--primary" href="#tours">
-                        Book a tour
-                      </a>
-                      <a className="btn btn--secondary" href="#activities">
-                        See the activities
-                      </a>
-                    </div>
+          <div data-sc-stage>
+            <div className="tt-set" data-sc-pan="0.06">
+              <div className="tt-set__lead">
+                <p className="tt-labelrow">The set</p>
+                <h2 id="tours-h" className="sc-display sc-display--lg">
+                  Six tours across Namibia
+                </h2>
+                <p className="sc-body">
+                  Every label reads the same way: days, route, inclusions.
+                  Longer routes cover more of the country.
+                </p>
+              </div>
+              {TOURS.map((t) => (
+                <article className="tt-tourcard" key={t.id}>
+                  <div data-sc-tilt="5">
+                    <figure>
+                      <img src={t.img} alt="" width={800} height={600} loading="lazy" />
+                    </figure>
                   </div>
-                </div>
+                  <div className="tt-tourcard__body">
+                    <p className="tt-labelrow">
+                      Days {t.days} · {t.short}
+                    </p>
+                    <h3>{t.title}</h3>
+                    <p className="tt-tourcard__inc">
+                      Park fees and transport included. Accommodation and most
+                      meals too.
+                    </p>
+                    <a className="link" href="#routes">
+                      The full route
+                    </a>
+                  </div>
+                </article>
+              ))}
+              <div className="tt-set__note">
+                <p className="sc-body">
+                  Every route can be tailored to your dates, and prices are
+                  confirmed in writing before anything is paid.
+                </p>
+                <a className="tt-btn tt-btn--ghost" href="#contact">
+                  WhatsApp us
+                </a>
               </div>
             </div>
           </div>
         </section>
 
-        {/* TOURS (services-list): the six tours as rows beside a photograph */}
-        <section className="section" id="tours" aria-labelledby="tours-h">
-          <div className="wrap">
-            <div className="section-head">
-              <h2 id="tours-h">
-                Six tours across Namibia.{" "}
-                <span className="muted">
-                  Every package can be tailored to your dates and route.
-                </span>
+        {/* 4 · SUBSTANCE: the day-by-day routes, folded under accordions. */}
+        <section className="sc-section tt-band" id="routes" data-sc-act="flow" aria-labelledby="routes-h">
+          <div className="sc-wrap">
+            <div data-sc-in data-sc-stagger="60">
+              <h2 id="routes-h" className="sc-display sc-display--lg">
+                The routes in full
               </h2>
-            </div>
-            <div className="grid grid--top">
-              <ul className="rows span-6">
-                {TOURS.map((t) => (
-                  <li key={t.id} id={t.id}>
-                    <details className="tour-detail">
-                      <summary>
-                        <span className="rows__name">
-                          {t.title}
-                          <small>
-                            {t.days} days · {t.short}
-                          </small>
-                        </span>
-                        <span className="rows__value">{t.days} days</span>
-                      </summary>
-                      <div className="tour-detail__body">
-                        <p>{t.intro}</p>
-                        <p className="tour-detail__itin">{t.itinerary}</p>
-                        <p className="muted tour-detail__incl">{t.included}</p>
-                      </div>
-                    </details>
-                  </li>
-                ))}
-              </ul>
-              <div className="span-5 start-8">
-                <div className="tours-photo">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={SOURCED.aerial}
-                    alt="Aerial view over the red dunes of Sossusvlei"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* CHAPTERS: the dealt pinned moment (GSAP scrubbed), its own two screens */}
-        <TourChapters chapters={CHAPTERS} />
-
-        {/* ACTIVITIES: rows with prices beside a photograph pair */}
-        <section
-          className="section"
-          id="activities"
-          aria-labelledby="activities-h"
-        >
-          <div className="wrap">
-            <div className="section-head">
-              <h2 id="activities-h">
-                Walks, drives and classes from Windhoek
-              </h2>
-              <p>
-                Half-day guided experiences in and around the capital, booked
-                on their own or added to any tour.
+              <p className="sc-body">
+                Each day and each included item, for every tour. Open the one
+                you are considering.
               </p>
             </div>
-            <div className="grid grid--top">
-              <ul className="rows span-6">
-                {ACTIVITIES.map((a) => (
-                  <li key={a.id}>
-                    <span className="rows__name">
-                      {a.title}
-                      <small>
-                        {a.hours}
-                        {a.price ? ` · ${a.price}` : ""}
-                      </small>
-                    </span>
-                  </li>
-                ))}
-              </ul>
-              <div className="span-5 start-8 activities-photos">
-                <div className="ap">
-                  { }
-                  <img
-                    src="/images/city.webp"
-                    alt="Windhoek's city centre between hills"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="ap">
-                  { }
-                  <img
-                    src="/images/namibian-food.webp"
-                    alt="Traditional Namibian food being prepared"
-                    loading="lazy"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* GALLERY: a wall of the client's photographs, from line to line */}
-        <section className="section" id="gallery" aria-labelledby="gallery-h">
-          <div className="wrap">
-            <div className="section-head">
-              <h2 id="gallery-h">
-                Namibia as our guests see it.{" "}
-                <span className="muted">
-                  Every photograph taken on a Truly Tours trip.
-                </span>
-              </h2>
-            </div>
-            <div className="wall">
-              {GALLERY.map((g) => (
-                <a
-                  key={g.img}
-                  className="m-zoom wall__cell"
-                  href={g.img}
-                  aria-label={g.alt}
-                >
-                  { }
-                  <img src={g.img} alt={g.alt} loading="lazy" />
-                </a>
+            <div className="tt-accs" data-sc-in data-sc-stagger="50">
+              {TOURS.map((t) => (
+                <details className="tt-acc" key={t.id}>
+                  <summary>
+                    <h3>{t.title}</h3>
+                    <span className="tt-acc__meta">{t.days} days</span>
+                    <svg className="tt-acc__chev" viewBox="0 0 14 14" aria-hidden="true">
+                      <path
+                        d="M5 2l5 5-5 5"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </summary>
+                  <div className="tt-acc__body">
+                    <p>{t.itinerary}</p>
+                    <p>{t.included}</p>
+                  </div>
+                </details>
               ))}
             </div>
           </div>
         </section>
 
-        {/* DEVELOPS + TESTIMONIALS (surface band): the dealt enter moment beside the guests' words */}
-        <section className="section ground-surface" id="guests" aria-labelledby="guests-h">
-          <div className="wrap grid grid--top">
-            <div className="span-6">
-              <div className="section-head">
-                <h2 id="guests-h">What our guests say</h2>
-                <p>
-                  We take pride in serving our guests with the best experience.
-                </p>
-              </div>
-              {TESTIMONIALS.map((t) => (
-                <figure className="quote" key={t.name}>
-                  <blockquote>{t.quote}</blockquote>
-                  <div className="person">
-                    <span className="mark mark--initial" aria-hidden="true">
-                      {t.name.charAt(0)}
+        {/* 5 · APPETITE: the experiences beyond the big loops, also folded. */}
+        <section className="sc-section" id="experiences" data-sc-act="flow" aria-labelledby="exp-h">
+          <div className="sc-wrap">
+            <div data-sc-in data-sc-stagger="60">
+              <h2 id="exp-h" className="sc-display sc-display--lg">
+                Experiences from Windhoek
+              </h2>
+              <p className="sc-body">
+                Day trips and walks that fit before or after a tour. Hours and
+                prices are on each label.
+              </p>
+            </div>
+            <div className="tt-accs" data-sc-in data-sc-stagger="40">
+              {ACTIVITIES.map((a) => (
+                <details className="tt-acc" key={a.id}>
+                  <summary>
+                    <h3>{a.title}</h3>
+                    <span className="tt-acc__meta">
+                      {a.hours} · {a.price}
                     </span>
-                    <span>
-                      <span className="person__name">{t.name}</span>
-                      <span className="person__role">Guest, Truly Tours</span>
-                    </span>
+                    <svg className="tt-acc__chev" viewBox="0 0 14 14" aria-hidden="true">
+                      <path
+                        d="M5 2l5 5-5 5"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.8"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </summary>
+                  <div className="tt-acc__body">
+                    <p>{a.text}</p>
+                    <img src={a.img} alt="" width={800} height={500} loading="lazy" />
                   </div>
+                </details>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 6 · TRUST: guest words one at a time, then the photo wall. */}
+        <section className="sc-section tt-band" id="words" data-sc-act="flow" aria-labelledby="words-h">
+          <div className="sc-wrap">
+            <div data-sc-in data-sc-stagger="60">
+              <h2 id="words-h" className="sc-display sc-display--lg">
+                What past guests say
+              </h2>
+            </div>
+            <div data-sc-in>
+              <TSlider items={TESTIMONIALS} />
+            </div>
+            <div className="tt-wall" style={{ marginTop: "var(--sc-8)" }} data-sc-in data-sc-stagger="60">
+              {GALLERY.map((g) => (
+                <figure key={g.img}>
+                  <img src={g.img} alt={g.alt} width={800} height={600} loading="lazy" />
                 </figure>
               ))}
             </div>
-            <DevelopingPhoto
-              img="/images/elephant.webp"
-              alt="Elephants walking across dry savanna in Etosha"
-              className="span-6 start-7"
-            />
           </div>
         </section>
 
-        {/* ABOUT: the team and CSR, a split with the zebra photograph */}
-        <section className="section" id="about" aria-labelledby="about-h">
-          <div className="wrap grid grid--top">
-            <div className="span-6">
-              <div className="section-head">
-                <h2 id="about-h">
-                  A Windhoek team that grew up guiding
-                </h2>
-              </div>
-              <p>
-                Our team is made up of knowledgeable members with years of
-                hands-on experience in Namibia&apos;s tourism industry. Each
-                team member has explored the country extensively through
-                guiding and travel planning, and holds academic qualifications
-                in tourism and related fields.
+        {/* 7 · RESOLVE: the contact plate, typeset like the labels above it.
+           The last act holds, and the footer lives inside it. */}
+        <section className="sc-section tt-close" id="contact" data-sc-act="flow" aria-labelledby="contact-h">
+          <div className="sc-wrap">
+            <div data-sc-in data-sc-stagger="70">
+              <p className="tt-labelrow">Contact</p>
+              <h2 id="contact-h" className="sc-display sc-display--lg">
+                Plan the trip with us
+              </h2>
+              <p className="sc-body">
+                One message with your dates and the route you are considering is
+                enough for a written quote.
               </p>
-              <p>
-                We believe that tourism should uplift local communities. Our
-                corporate social responsibility work supports rural communities
-                in high-risk human-wildlife conflict areas, particularly
-                small-scale farmers whose crops and livestock sit beside
-                wildlife corridors.
-              </p>
-              <p>
-                <a className="link" href="#contact">
-                  Ask us about our community work
+              <div className="tt-cta-row">
+                <a className="tt-btn" href={WA} target="_blank" rel="noopener noreferrer">
+                  WhatsApp us
                 </a>
-              </p>
-            </div>
-            <div className="span-5 start-8">
-              <div className="tours-photo">
-                { }
-                <img
-                  src="/images/zebra.webp"
-                  alt="Zebras grazing on golden grassland"
-                  loading="lazy"
-                />
+                <a className="tt-btn tt-btn--ghost" href={`mailto:${CONTACT.email}`}>
+                  Email us
+                </a>
               </div>
             </div>
+            <div className="tt-plate" style={{ marginTop: "var(--sc-7)" }} data-sc-in>
+              <details className="tt-acc">
+                <summary>
+                  <h3>About the team</h3>
+                  <span className="tt-acc__meta">Windhoek</span>
+                  <svg className="tt-acc__chev" viewBox="0 0 14 14" aria-hidden="true">
+                    <path
+                      d="M5 2l5 5-5 5"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </summary>
+                <div className="tt-acc__body">
+                  <p>
+                    Our team is made up of knowledgeable members with years of
+                    hands-on experience in Namibia&apos;s tourism industry. Each
+                    team member has explored the country extensively through
+                    guiding and travel planning, and holds academic
+                    qualifications in tourism and related fields.
+                  </p>
+                  <p>
+                    We believe that tourism should uplift local communities. Our
+                    corporate social responsibility work supports rural
+                    communities in high-risk human-wildlife conflict areas,
+                    particularly small-scale farmers whose crops and livestock
+                    sit beside wildlife corridors.
+                  </p>
+                </div>
+              </details>
+              <dl className="tt-facts" style={{ marginTop: "var(--sc-5)" }}>
+                <dt>Phone</dt>
+                <dd>
+                  <a href="tel:+264814642798">+264 81 464 2798</a> /{" "}
+                  <a href="tel:+264812582241">+264 81 258 2241</a>
+                </dd>
+                <dt>Email</dt>
+                <dd>
+                  <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+                </dd>
+                <dt>Where</dt>
+                <dd>{CONTACT.city}</dd>
+                <dt>Hours</dt>
+                <dd>{CONTACT.hours}</dd>
+                <dt>Instagram</dt>
+                <dd>
+                  <a href={CONTACT.instagram} target="_blank" rel="noreferrer">
+                    @truly_tours_namibia
+                  </a>
+                </dd>
+              </dl>
+            </div>
+            <footer className="tt-foot" style={{ marginTop: "var(--sc-8)" }}>
+              <div className="tt-foot__row">
+                <span>&copy; 2026 Truly Tours Namibia</span>
+                <a href="/privacy-policy">Privacy</a>
+                <a href="/terms">Terms</a>
+                <a href="/brand">Brand</a>
+              </div>
+              <div className="tt-foot__row">
+                <span>
+                  Destination photographs: Pexels, Britannica. All other
+                  photographs by Truly Tours Namibia.
+                </span>
+              </div>
+              <div className="tt-foot__row">
+                <span>
+                  Made by{" "}
+                  <a href="https://studio.tangison.com" target="_blank" rel="noopener noreferrer">
+                    Tangison Studio
+                  </a>
+                </span>
+              </div>
+            </footer>
           </div>
         </section>
       </main>
-
-      {/* FOOTER.CLOSING: close-photo (the rhino never used above), then the directory */}
-      <footer className="footer closing" id="contact" aria-labelledby="close-h">
-        <div className="wrap">
-          <div className="closing__cta close--photo">
-            <div className="section-head--split">
-              <div>
-                <h2 id="close-h">Book a tour</h2>
-                <p className="t-lead">
-                  Reception 7:30 to 17:00, Windhoek. We reply within a day.
-                </p>
-              </div>
-              <a className="btn btn--primary" href={`mailto:${CONTACT.email}`}>
-                Book a tour
-              </a>
-            </div>
-            <div className="close__media">
-              { }
-              <img
-                src="/images/rhino.webp"
-                alt="A rhino standing in Etosha scrubland"
-                loading="lazy"
-              />
-            </div>
-          </div>
-          <div className="closing__links">
-            <div className="grid">
-              <div className="span-4 stack-4">
-                { }
-                <img
-                  className="footer-logo"
-                  src="/images/asset-2.webp"
-                  alt="Truly Tours Namibia"
-                  height={40}
-                />
-                <p className="footer__lede">
-                  Guided tours across Namibia, from Windhoek.
-                </p>
-              </div>
-              <div className="span-2 footer__col">
-                <h3>Tours</h3>
-                <ul>
-                  <li>
-                    <a href="#tours">All six tours</a>
-                  </li>
-                  <li>
-                    <a href="#chapters">The southern loop</a>
-                  </li>
-                  <li>
-                    <a href="#activities">Activities</a>
-                  </li>
-                </ul>
-              </div>
-              <div className="span-2 footer__col">
-                <h3>Company</h3>
-                <ul>
-                  <li>
-                    <a href="#about">About us</a>
-                  </li>
-                  <li>
-                    <a href="#gallery">Gallery</a>
-                  </li>
-                  <li>
-                    <a href="#guests">Guests</a>
-                  </li>
-                </ul>
-              </div>
-              <div className="span-2 footer__col">
-                <h3>Contact</h3>
-                <ul>
-                  <li>
-                    <a href={`mailto:${CONTACT.email}`}>Email us</a>
-                  </li>
-                  <li>
-                    <a href="tel:+264814642798">Call reception</a>
-                  </li>
-                  <li>
-                    <a
-                      href={CONTACT.instagram}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      Instagram
-                    </a>
-                  </li>
-                </ul>
-              </div>
-              <div className="span-2 footer__col">
-                <h3>Visit</h3>
-                <ul>
-                  <li>Windhoek, Namibia</li>
-                  <li>Reception 7:30 to 17:00</li>
-                  <li>Mon to Fri</li>
-                </ul>
-              </div>
-            </div>
-            <div className="footer__legal">
-              <span>&copy; 2026 Truly Tours Namibia</span>
-              <span className="muted">
-                Destination photographs: Pexels, Britannica. All other
-                photographs by Truly Tours Namibia.
-              </span>
-              <span>
-                Made by{" "}
-                <a
-                  href="https://studio.tangison.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Tangison Studio
-                </a>
-              </span>
-              <div className="socials" />
-            </div>
-          </div>
-        </div>
-      </footer>
-
-      {/* the kit's behaviour layer: nav sheet, hover layer, hero entrance */}
-      <KitScripts />
     </>
   );
 }

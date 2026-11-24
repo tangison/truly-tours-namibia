@@ -1,0 +1,268 @@
+/* ============================================================================
+   truly.css: the Truly Tours Namibia page, composed on the scrollcraft floor.
+   Tokens are overridden here; every class below is page markup. The engine's
+   device classes (.sc-stage, [data-sc-*]) are the mechanism and are not
+   restyled. High-key paper ground per worlds.md: shadows halved and tinted to
+   the canvas hue, raise carried by hairlines instead of a dark edge light.
+   ========================================================================== */
+
+:root {
+  --sc-canvas:      #f4efe8;
+  --sc-surface:     #e9e2d6;
+  --sc-ink:         #33291c;
+  --sc-ink-soft:    #6b6154;
+  --sc-accent:      #c05a15;
+  --sc-accent-ink:  #ffffff;
+  --sc-font-display: "Schibsted Grotesk", system-ui, sans-serif;
+  --sc-font-text:    "Schibsted Grotesk", system-ui, sans-serif;
+  --sc-shadow-color: 34 25% 14%;
+  --sc-e1: 0 1px 2px hsl(var(--sc-shadow-color) / 0.10),
+           0 2px 6px -1px hsl(var(--sc-shadow-color) / 0.08);
+  --sc-e2: 0 2px 4px hsl(var(--sc-shadow-color) / 0.10),
+           0 8px 18px -4px hsl(var(--sc-shadow-color) / 0.14);
+  --sc-e3: 0 4px 8px hsl(var(--sc-shadow-color) / 0.10),
+           0 18px 40px -8px hsl(var(--sc-shadow-color) / 0.16);
+  --sc-edge: inset 0 1px 0 color-mix(in oklab, #ffffff 40%, transparent);
+  --sc-r: 10px;
+  --tt-grain: 0.025;
+}
+
+/* ---------------------------------------------------------------- chrome -- */
+.tt-top {
+  position: fixed; right: 14px; bottom: calc(64px + 14px); z-index: 55;
+  width: 44px; height: 44px; border-radius: var(--sc-r-pill);
+  background: var(--sc-accent); color: var(--sc-accent-ink);
+  border: 0; cursor: pointer; display: grid; place-items: center;
+  box-shadow: var(--sc-e2);
+  opacity: 0; transform: scale(0.92); pointer-events: none;
+  transition: opacity var(--sc-d-base) var(--sc-ease-out),
+              transform var(--sc-d-base) var(--sc-ease-out);
+}
+.tt-top[data-show="true"] { opacity: 1; transform: none; pointer-events: auto; }
+.tt-top:active { transform: scale(0.96); }
+
+.tt-rail {
+  position: fixed; inset: auto 0 0 0; height: 64px; z-index: 54;
+  color: var(--sc-accent); background: transparent; pointer-events: none;
+}
+.tt-rail svg { position: absolute; inset: auto 0 0 0; width: 100%; height: 64px; }
+.tt-rail__trace {
+  stroke: currentColor; opacity: 0.9;
+  filter: drop-shadow(0 1px 0 color-mix(in oklab, var(--sc-ink) 18%, transparent));
+}
+.tt-rail__dot {
+  position: absolute; bottom: 26px; width: 12px; height: 12px; margin-left: -6px;
+  border-radius: var(--sc-r-pill); border: 2px solid var(--sc-accent);
+  background: var(--sc-canvas); pointer-events: auto; cursor: pointer;
+  transition: background var(--sc-d-fast) var(--sc-ease-out),
+              transform var(--sc-d-fast) var(--sc-ease-out);
+}
+.tt-rail__dot[data-done="true"] { background: var(--sc-accent); }
+.tt-rail__dot[data-live="true"] { transform: scale(1.5); }
+.tt-rail__dot:hover { transform: scale(1.4); }
+
+@media (max-width: 860px) {
+  .tt-rail { height: 44px; }
+  .tt-rail svg { height: 44px; }
+  .tt-rail__dot { bottom: 16px; width: 10px; height: 10px; margin-left: -5px; }
+  .tt-top { bottom: calc(44px + 12px); }
+}
+
+/* ------------------------------------------------------------------ hero -- */
+.hero-sc {
+  position: relative; min-height: 100svh; overflow: clip;
+  display: grid; align-content: end; padding-block: 0 5.5rem;
+}
+.hero-sc__bed { position: absolute; inset: -14% -4%; z-index: 0; }
+.hero-sc__bed img { width: 100%; height: 100%; object-fit: cover; max-width: none; }
+.hero-sc__atmo {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to top,
+    color-mix(in oklab, var(--sc-canvas) 92%, transparent) 0%,
+    color-mix(in oklab, var(--sc-canvas) 55%, transparent) 26%,
+    color-mix(in oklab, var(--sc-canvas) 18%, transparent) 48%,
+    transparent 72%);
+}
+.hero-sc__object {
+  position: absolute; right: clamp(1rem, 7vw, 7rem); bottom: 18%;
+  width: clamp(280px, 33vw, 540px); z-index: 2;
+}
+.hero-sc__object img {
+  width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover;
+  border-radius: var(--sc-r); box-shadow: var(--sc-e3);
+  background: var(--sc-surface);
+}
+.hero-sc__label {
+  position: absolute; right: clamp(1rem, 7vw, 7rem); bottom: 6%;
+  width: min(21rem, 78vw); z-index: 3;
+  background: var(--sc-canvas); border: 1px solid var(--sc-hairline-strong);
+  border-radius: var(--sc-r); box-shadow: var(--sc-e2);
+  padding: var(--sc-4) var(--sc-5);
+}
+.hero-sc__type { position: relative; z-index: 4; max-width: 44rem; }
+/* the hero headline holds two lines, not four: the ramp's 4xl is a hero-poster
+   size, and this composition puts words over a photograph, not on a poster */
+.hero-sc__type h1 {
+  font-size: clamp(2.5rem, 1.2rem + 2.6vw, 4rem);
+  letter-spacing: var(--sc-track-snug);
+}
+.hero-sc__label h2 { font-size: var(--sc-t-lg); }
+.tt-labelrow {
+  font-size: var(--sc-t-xs); letter-spacing: var(--sc-track-wide);
+  text-transform: uppercase; color: var(--sc-accent);
+  font-variant-numeric: tabular-nums;
+}
+@media (max-width: 860px) {
+  .hero-sc { padding-bottom: 7rem; align-content: end; }
+  .hero-sc__object { position: relative; right: auto; bottom: auto;
+    width: calc(100% - 2 * var(--sc-gutter)); margin-top: 4.5rem; z-index: 2; }
+  .hero-sc__label { position: relative; right: auto; bottom: auto;
+    margin: -2.5rem var(--sc-gutter) 0; width: calc(100% - 2 * var(--sc-gutter)); }
+  .hero-sc__type { padding-inline: var(--sc-gutter); margin-top: var(--sc-6); }
+}
+
+/* section grounds: hard edges per room, no drift (short flow acts) */
+.tt-band { background: var(--sc-surface); }
+.tt-pan-sec { background: var(--sc-canvas); }
+
+/* the pan stage: full viewport, rail vertically centred */
+.tt-pan-sec [data-sc-stage] { display: grid; align-content: center; }
+.tt-pan-sec .tt-set { padding-block: var(--sc-5); }
+
+.tt-cta-row { display: flex; flex-wrap: wrap; gap: var(--sc-3); margin-top: var(--sc-5); }
+
+/* ---------------------------------------------------------------- labels -- */
+.tt-plate {
+  background: var(--sc-canvas); border: 1px solid var(--sc-hairline-strong);
+  border-radius: var(--sc-r); padding: var(--sc-4) var(--sc-5);
+  box-shadow: var(--sc-e1);
+}
+.tt-facts { display: grid; gap: 2px; margin: 0; }
+.tt-facts dt { font-size: var(--sc-t-xs); letter-spacing: var(--sc-track-wide);
+  text-transform: uppercase; color: var(--sc-ink-soft); }
+.tt-facts dd { margin: 0 0 var(--sc-2); font-variant-numeric: tabular-nums; }
+
+/* ------------------------------------------------------------- tour rail -- */
+.tt-set { display: flex; gap: var(--sc-5); padding-inline: var(--sc-gutter); align-items: stretch; }
+.tt-set__lead, .tt-set__note {
+  flex: 0 0 auto; width: clamp(18rem, 24vw, 25rem);
+  display: grid; align-content: center; gap: var(--sc-3);
+  background: none; border: 0; box-shadow: none; padding: 0 var(--sc-2);
+}
+.tt-tourcard {
+  flex: 0 0 auto; width: clamp(19rem, 23vw, 23.5rem); margin-block: var(--sc-5);
+  background: var(--sc-canvas); border: 1px solid var(--sc-hairline-strong);
+  border-radius: var(--sc-r); overflow: clip; box-shadow: var(--sc-e2);
+}
+.tt-tourcard figure { margin: 0; aspect-ratio: 4 / 3; overflow: clip; background: var(--sc-surface); }
+.tt-tourcard figure img { width: 100%; height: 100%; object-fit: cover; }
+.tt-tourcard__body { padding: var(--sc-4) var(--sc-5) var(--sc-5); display: grid; gap: var(--sc-2); }
+.tt-tourcard__route { color: var(--sc-ink-soft); font-size: var(--sc-t-sm); }
+.tt-tourcard__inc { color: var(--sc-ink-soft); font-size: var(--sc-t-sm); }
+.tt-tourcard__body .link { font-weight: 500; }
+@media (max-width: 860px) {
+  .tt-set { gap: var(--sc-4); }
+  .tt-set__lead, .tt-set__note, .tt-tourcard { width: 78vw; }
+}
+
+/* ------------------------------------------------------------- accordions -- */
+.tt-accs { border-top: 1px solid var(--sc-hairline-strong); }
+.tt-acc { border-bottom: 1px solid var(--sc-hairline); }
+.tt-acc summary {
+  list-style: none; cursor: pointer; display: grid;
+  grid-template-columns: 1fr auto auto; gap: var(--sc-4); align-items: baseline;
+  padding: var(--sc-4) var(--sc-2);
+}
+.tt-acc summary::-webkit-details-marker { display: none; }
+.tt-acc summary h3 { margin: 0; font-size: var(--sc-t-lg); line-height: var(--sc-leading-tight); }
+.tt-acc__meta {
+  font-size: var(--sc-t-xs); letter-spacing: var(--sc-track-wide);
+  text-transform: uppercase; color: var(--sc-ink-soft); white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.tt-acc__chev { width: 14px; height: 14px; color: var(--sc-accent);
+  transition: transform var(--sc-d-base) var(--sc-ease-out); }
+.tt-acc[open] .tt-acc__chev { transform: rotate(90deg); }
+.tt-acc__body { padding: 0 var(--sc-2) var(--sc-5); max-width: 70ch; }
+.tt-acc[open] .tt-acc__body { animation: tt-fade 200ms var(--sc-ease-out); }
+@keyframes tt-fade { from { opacity: 0; } to { opacity: 1; } }
+.tt-acc__body img { width: 100%; height: auto; border-radius: var(--sc-r);
+  margin-top: var(--sc-3); }
+@media (hover: hover) and (pointer: fine) {
+  .tt-acc summary:hover h3 { color: var(--sc-accent); }
+}
+
+/* ------------------------------------------------------------ guest words -- */
+.tt-words { max-width: 46rem; }
+.tt-words__frame { overflow: clip; border-radius: var(--sc-r); }
+.tt-words__track { display: flex; transition: transform 420ms var(--sc-ease-drawer); }
+.tt-words__slide { flex: 0 0 100%; margin: 0; padding: var(--sc-6) var(--sc-6);
+  background: var(--sc-canvas); border: 1px solid var(--sc-hairline-strong);
+  border-radius: var(--sc-r); }
+.tt-words__slide blockquote { margin: 0; font-size: var(--sc-t-lg); line-height: 1.44;
+  letter-spacing: var(--sc-track-snug); text-wrap: pretty; }
+.tt-words__slide figcaption { margin-top: var(--sc-3); color: var(--sc-ink-soft);
+  font-size: var(--sc-t-sm); }
+.tt-words__nav { display: flex; align-items: center; gap: var(--sc-3); margin-top: var(--sc-4); }
+.tt-words__nav > button {
+  width: 44px; height: 44px; border-radius: var(--sc-r-pill);
+  border: 1px solid var(--sc-hairline-strong); background: var(--sc-canvas);
+  color: var(--sc-ink); cursor: pointer; display: grid; place-items: center;
+  transition: transform var(--sc-d-fast) var(--sc-ease-out);
+}
+.tt-words__nav > button:hover { border-color: var(--sc-accent); color: var(--sc-accent); }
+.tt-words__nav > button:active { transform: scale(0.96); }
+.tt-words__dots { display: flex; gap: var(--sc-2); margin-inline: var(--sc-2); }
+.tt-words__dot { width: 10px; height: 10px; border-radius: var(--sc-r-pill);
+  border: 1px solid var(--sc-hairline-strong); background: transparent;
+  cursor: pointer; padding: 0; }
+.tt-words__dot[data-on="true"] { background: var(--sc-accent); border-color: var(--sc-accent); }
+
+/* ------------------------------------------------------------------- wall -- */
+.tt-wall { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sc-3); }
+.tt-wall figure { margin: 0; aspect-ratio: 4 / 3; overflow: clip; border-radius: var(--sc-r);
+  background: var(--sc-surface); }
+.tt-wall img { width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 860px) { .tt-wall { grid-template-columns: repeat(2, 1fr); } }
+
+/* ---------------------------------------------------------------- buttons -- */
+.tt-btn {
+  display: inline-flex; align-items: center; gap: var(--sc-2);
+  padding: 0.8rem 1.4rem; border-radius: var(--sc-r);
+  background: var(--sc-accent); color: var(--sc-accent-ink);
+  border: 1px solid var(--sc-accent); font-weight: 500; text-decoration: none;
+  transition: transform var(--sc-d-fast) var(--sc-ease-out),
+              background var(--sc-d-fast) var(--sc-ease-out);
+}
+.tt-btn:hover { background: color-mix(in oklab, var(--sc-accent) 88%, #000); }
+.tt-btn:active { transform: scale(0.97); }
+.tt-btn--ghost { background: transparent; color: var(--sc-ink); border-color: var(--sc-hairline-strong); }
+.tt-btn--ghost:hover { border-color: var(--sc-accent); color: var(--sc-accent); background: transparent; }
+
+/* ------------------------------------------------------------- close/foot -- */
+.tt-close {
+  background: #33291c; color: #f4efe8;
+  --sc-ink: #f4efe8; --sc-ink-soft: #aba39a;
+  --sc-hairline: color-mix(in oklab, #f4efe8 12%, transparent);
+  --sc-hairline-strong: color-mix(in oklab, #f4efe8 24%, transparent);
+}
+.tt-close .tt-plate { background: #3f3528; border-color: var(--sc-hairline-strong); }
+.tt-close .tt-facts dt { color: var(--sc-ink-soft); }
+.tt-foot { border-top: 1px solid var(--sc-hairline); padding-top: var(--sc-4);
+  display: grid; gap: var(--sc-2); font-size: var(--sc-t-sm); color: var(--sc-ink-soft); }
+.tt-foot__row { display: flex; flex-wrap: wrap; gap: var(--sc-2) var(--sc-5); }
+.tt-foot a { color: var(--sc-ink-soft); text-underline-offset: 0.22em; }
+.tt-foot a:hover { color: var(--sc-ink); }
+
+/* ------------------------------------------------------------- legal/docs -- */
+.tt-doc { max-width: 62ch; }
+.tt-doc__head { display: grid; gap: var(--sc-3); margin-bottom: var(--sc-7); }
+
+/* split composition (about rows) */
+.tt-split { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: var(--sc-7); align-items: center; }
+.tt-split > figure { margin: 0; }
+.tt-split figure img { width: 100%; height: auto; border-radius: var(--sc-r); box-shadow: var(--sc-e2); }
+@media (max-width: 860px) { .tt-split { grid-template-columns: 1fr; } }
+
+/* grain, softened for a light ground */
+.sc-grain { opacity: var(--tt-grain); }

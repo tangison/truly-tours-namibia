@@ -118,7 +118,7 @@ export const ACTIVITIES: Activity[] = [
     id: "bushmen-walk",
     hours: "3 hours",
     title: "The Bushmen Walk: step into ancient wisdom",
-    text: "A cultural visit to the Bushmen Survival Trust, 22 km from Windhoek, where the last first-people of Southern Africa share their surviving skills, culture and rich heritage.",
+    text: "A cultural visit to the Bushmen Survival Trust, 22 km from Windhoek, where the last first-people of Southern Africa share their surviving skills and their culture's rich heritage.",
     price: "",
     img: "/images/bushman.webp",
   },
@@ -196,5 +196,4 @@ export const GALLERY = [
 export const SOURCED = {
   canyon: "/images/fish-river-canyon.webp",
   kolmanskop: "/images/kolmanskop.webp",
-  aerial: "/images/dunes-aerial.webp",
 };

@@ -2,8 +2,10 @@ import Link from "next/link";
 import { CONTACT } from "@/lib/site";
 
 /* Shared chrome for the standalone routes (/brand, /privacy-policy, /terms,
-   /500): the same nav pattern and the same footer as the home page, so every
-   route carries the studio credit and the client's details. */
+   /500): the same index nav as the home page and the same contact-plate
+   footer, so every route carries the studio credit and the client's details. */
+
+const WA = "https://wa.me/264814642798";
 
 export function SubNav() {
   return (
@@ -30,15 +32,10 @@ export function SubNav() {
           </div>
         </nav>
         <Link className="nav__logo" href="/" aria-label="Truly Tours Namibia, home">
-          <img src="/images/asset-2.webp" alt="Truly Tours Namibia" width={88} height={29} />
+          <img src="/images/asset-2.webp" alt="Truly Tours Namibia" width={88} height={34} />
         </Link>
         <div className="nav__actions">
-          <a
-            className="btn btn--primary"
-            href="https://wa.me/264814642798"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <a className="btn btn--primary" href={WA} target="_blank" rel="noopener noreferrer">
             WhatsApp us
           </a>
         </div>
@@ -49,34 +46,50 @@ export function SubNav() {
 
 export function SubFooter() {
   return (
-    <footer className="closing ground-inverse" id="contact">
-      <div className="wrap">
-        <div className="footer-cta">
-          <h2>Plan your Namibia trip with us</h2>
-          <p className="footer-contacts">
-            <a href={`tel:${CONTACT.phone.split(" / ")[0].replace(/\s+/g, "")}`}>
-              {CONTACT.phone}
+    <footer className="sc-section tt-close" id="contact">
+      <div className="sc-wrap">
+        <div data-sc-in data-sc-stagger="70">
+          <p className="tt-labelrow">Contact</p>
+          <h2 className="sc-display sc-display--lg">Plan the trip with us</h2>
+          <div className="tt-cta-row">
+            <a className="tt-btn" href={WA} target="_blank" rel="noopener noreferrer">
+              WhatsApp us
             </a>
-            <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
-            <span>{CONTACT.city}</span>
-          </p>
+            <a className="tt-btn tt-btn--ghost" href={`mailto:${CONTACT.email}`}>
+              Email us
+            </a>
+          </div>
         </div>
-        <div className="footer__legal">
-          <span>&copy; 2026 Truly Tours Namibia</span>
-          <span className="muted">
-            Destination photographs: Pexels, Britannica. All other photographs
-            by Truly Tours Namibia.
-          </span>
-          <span>
-            Made by{" "}
-            <a
-              href="https://studio.tangison.com"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Tangison Studio
-            </a>
-          </span>
+        <dl className="tt-facts" style={{ marginTop: "var(--sc-7)" }} data-sc-in>
+          <dt>Phone</dt>
+          <dd>
+            <a href="tel:+264814642798">+264 81 464 2798</a> /{" "}
+            <a href="tel:+264812582241">+264 81 258 2241</a>
+          </dd>
+          <dt>Email</dt>
+          <dd>
+            <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>
+          </dd>
+          <dt>Where</dt>
+          <dd>{CONTACT.city}</dd>
+          <dt>Hours</dt>
+          <dd>{CONTACT.hours}</dd>
+        </dl>
+        <div className="tt-foot" style={{ marginTop: "var(--sc-7)" }}>
+          <div className="tt-foot__row">
+            <span>&copy; 2026 Truly Tours Namibia</span>
+            <Link href="/privacy-policy">Privacy</Link>
+            <Link href="/terms">Terms</Link>
+            <Link href="/brand">Brand</Link>
+          </div>
+          <div className="tt-foot__row">
+            <span>
+              Made by{" "}
+              <a href="https://studio.tangison.com" target="_blank" rel="noopener noreferrer">
+                Tangison Studio
+              </a>
+            </span>
+          </div>
         </div>
       </div>
     </footer>
